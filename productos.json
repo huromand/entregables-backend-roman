@@ -1,0 +1,22 @@
+{
+  "productos": [
+    {
+      "nombre": "ROBOT 1",
+      "precio": 49000,
+      "imagen": "https://robohash.org/1",
+      "id": 1
+    },
+    {
+      "nombre": "ROBOT 2",
+      "precio": 71000,
+      "imagen": "https://robohash.org/2",
+      "id": 2
+    },
+    {
+      "nombre": "ROBOT 3",
+      "precio": 54000,
+      "imagen": "https://robohash.org/3",
+      "id": 3
+    }
+  ]
+}
