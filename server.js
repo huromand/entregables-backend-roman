@@ -1,79 +1,49 @@
-const express = require("express");
-const app = express();
-const fs = require("fs");
-
 /*
 cree un servidor con express y con la clase contenedor del desafío anterior recupero del archivo productos.json los datos que va entregar el servidor
 */
 
-class Contenedor{
-  constructor(archivo) {
-      this.nombreDelArchivo = archivo;
-  }
+const express = require("express");
+const app = express();
 
-  save(obj){
-      const data = fs.readFileSync(this.nombreDelArchivo, "utf-8");
-      const items = JSON.parse(data);
-      if(items.productos == ""){
-          obj.id = 1;
-          items.productos.push(obj);
-      }else{
-          obj.id = items.productos.length +1;
-          items.productos.push(obj);
-      }
-      fs.writeFileSync("productos.json",JSON.stringify(items, null, 2))
-  }
-
-  getById(id){
-      const data = fs.readFileSync(this.nombreDelArchivo, "utf-8");
-      const items = JSON.parse(data);
-      const { productos } = items;
-      const producto = productos.find((item) => item.id == id);
-      if( producto === undefined) return null;
-      return producto;
-  }
-
-  getAll(){
-      const data = fs.readFileSync(this.nombreDelArchivo, "utf-8");
-      const items = JSON.parse(data);
-      //console.log(items);
-      return items;
-  }
-
-  deleteById(id){
-      const data = fs.readFileSync(this.nombreDelArchivo, "utf-8");
-      const items = JSON.parse(data);
-      const { productos } = items;
-      const newArray = productos.filter((item) => item.id !== id);
-      items.productos = newArray;
-      fs.writeFileSync("ejemplo.json",JSON.stringify(items, null, 2))
-  }
-
-  deleteAll() {
-      const vacio = {"productos" : []}
-      fs.writeFileSync(this.nombreDelArchivo, JSON.stringify(vacio));
-      console.log(`Se eliminaron todos los productos del archivo: ${this.nombreDelArchivo}`);
-  }
-}
-
+const Contenedor = require("./utils/contenedor");
 const contenedor1 = new Contenedor("productos.json", "utf-8");
-
-let aleatorio = 1 + Math.floor(Math.random() * 3);
+const upload = require("./stora");
 
 const PORT = 8080;
 
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+
 app.get("/", (req, res) => {
-  res.send(`Bienvenidos a la ruta raiz, las rutas posibles son:\n
-  \t/productos\n
-  \t/productosRandom\n`);
+    res.sendFile(__dirname + "/public/index.html")
+//   res.send(`<h1>Bienvenidos a la ruta raiz</h1>`);
 });
 
-app.get("/productos", (req, res) => {
-   res.send(contenedor1.getAll());
+// GET "/api/productos" -> devuelve todos los productos
+app.get("/api/productos", (req, res) => {
+    res.send(contenedor1.getAll());
 });
 
-app.get("/productoRandom", (req, res) => {
-   res.send(contenedor1.getById(aleatorio));
+// GET "/api/productos/:id" -> devuelve el producto segun parametro id
+app.get("/api/productos/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    if(contenedor1.getById(id)==null){
+        res.send("Producto no encontrado")
+    } else {
+    res.send(contenedor1.getById(id));
+    }
+});
+
+//POST "/api/productos" -> agrega un producto 
+app.post("/api/productos", (req, res) => {
+    console.log(app.post(""))
+    res.send("nada");
+});
+
+// DELETE "/api/productos/:id" -> devuelve el producto segun parametro id
+app.delete("/api/productos/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    res.send(contenedor1.deleteById(id));
 });
 
 app.listen(PORT, () => {
