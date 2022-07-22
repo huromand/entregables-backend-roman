@@ -7,11 +7,12 @@ const app = express();
 
 const Contenedor = require("./utils/contenedor");
 const contenedor1 = new Contenedor("productos.json", "utf-8");
-const upload = require("./stora");
+//const upload = require("./storage");
 
 const PORT = 8080;
 
-app.use(express.urlencoded({extended: false}));
+
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -36,8 +37,14 @@ app.get("/api/productos/:id", (req, res) => {
 
 //POST "/api/productos" -> agrega un producto 
 app.post("/api/productos", (req, res) => {
-    console.log(app.post(""))
-    res.send("nada");
+    contenedor1.save(req.body);
+    res.send(contenedor1.getAll());
+});
+
+//PUT "/api/productos/:id" -> modifico un prodroducto 
+app.put("/api/productos/:id", (req, res) => {
+    contenedor1.mod(req.body);
+    res.send(contenedor1.getById(parseInt(req.params.id)));
 });
 
 // DELETE "/api/productos/:id" -> devuelve el producto segun parametro id

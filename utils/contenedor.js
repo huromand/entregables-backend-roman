@@ -17,7 +17,17 @@ class Contenedor{
         }
         fs.writeFileSync(this.nombreDelArchivo,JSON.stringify(items, null, 2))
         return obj.id;
-      }
+    }
+
+    mod(obj){
+        const data = fs.readFileSync(this.nombreDelArchivo, "utf-8");
+        const items = JSON.parse(data);
+        const { productos } = items;
+        const newArray = productos.filter((item) => item.id !== obj.id);
+        items.productos = newArray;
+        items.productos.push(obj);
+        fs.writeFileSync(this.nombreDelArchivo,JSON.stringify(items, null, 2))
+    }
   
     getById(id){
         const data = fs.readFileSync(this.nombreDelArchivo, "utf-8");

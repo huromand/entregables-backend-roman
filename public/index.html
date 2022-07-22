@@ -23,16 +23,22 @@
         form .submit {
           background-color: rgb(173, 119, 106);
         }
+        .box{
+          margin:10vw;
+        }
       </style>
 </head>
 <body>
-    <h1>Raiz</h1>>
-    <h2>Cargar producto</h2>
-    <form action="/api/productos" enctype="multipart/form-data" method="POST">
-        <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-        <input type="text" name="precio" id="precio" placeholder="Precio">
-        <input type="text" name="imagen" id="imagen" placeholder="URL Imagen">
-        <input type="submit" value="Cargar Producto" class="submit" />
-    </form>
+    <h1>Raiz</h1>
+
+    <div class="box">
+    <h2>Cargar nuevo producto</h2>
+      <form action="/api/productos" enctype="form-data" method="POST">
+          <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+          <input type="text" name="precio" id="precio" placeholder="Precio">
+          <input type="text" name="imagen" id="imagen" placeholder="URL Imagen">
+          <input type="submit" value="Cargar Producto" class="submit" />
+      </form>
+    </div>
 </body>
 </html>
