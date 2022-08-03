@@ -1,0 +1,15 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-3">Cargar nuevo producto</h2>
+    <form action="/api/productos" enctype="form-data" method="POST">
+        <div class="mb-3">
+        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre">
+        </div>
+        <div class="mb-3">
+        <input class="form-control" type="text" name="precio" id="precio" placeholder="Precio">
+        </div>
+        <div class="mb-3">
+        <input class="form-control" type="text" name="imagen" id="imagen" placeholder="URL Imagen">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Cargar Producto" class="submit" />
+    </form>
+</div>

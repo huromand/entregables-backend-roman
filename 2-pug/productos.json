@@ -41,12 +41,6 @@
       "precio": "87524",
       "imagen": "https://robohash.org/70",
       "id": 7
-    },
-    {
-      "nombre": "ROBOT r2d2",
-      "precio": "59326",
-      "imagen": "https://robohash.org/59",
-      "id": 8
     }
   ]
 }
