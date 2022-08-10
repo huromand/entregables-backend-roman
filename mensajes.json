@@ -1,8 +1,28 @@
-{"mensajes": [
+{
+  "mensajes": [
     {
-        "email":"unmail@mailo.com",
-        "message":"test hora",
-        "dateTime":"9-8-2022 18:50:25",
-        "id":2
+      "usuario": "admin@mailo.com",
+      "mensaje": "Bienvenidos!",
+      "dateTime": "9-8-2022 07:50:25",
+      "id": 1
+    },
+    {
+      "usuario": "nombre@mail.com",
+      "mensaje": "hola!",
+      "dateTime": "10-8-2022 16:19:36",
+      "id": 2
+    },
+    {
+      "usuario": "nombre@mail.com",
+      "mensaje": "chau",
+      "dateTime": "10-8-2022 16:22:46",
+      "id": 3
+    },
+    {
+      "usuario": "nombre2@mail.com",
+      "mensaje": "chau",
+      "dateTime": "10-8-2022 16:22:59",
+      "id": 4
     }
-]}
+  ]
+}

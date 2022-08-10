@@ -13,7 +13,7 @@
     
     <div class="container mt-5">
         <h2 class="text-center mb-3">Cargar nuevo producto</h2>
-        <form action="/api/productos" enctype="form-data" method="POST">
+        <div >
             <div class="mb-3">
             <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre">
             </div>
@@ -23,8 +23,8 @@
             <div class="mb-3">
             <input class="form-control" type="text" name="imagen" id="imagen" placeholder="URL Imagen">
             </div>
-            <input class="btn btn-primary" type="submit" value="Cargar Producto" class="submit" />
-        </form>
+            <input class="btn btn-primary" value="Cargar Producto" class="submit"  id="enviarProducto"/>
+        </div>
     </div>
     
     <div id="items"></div>
@@ -33,15 +33,13 @@
         <div class="row mt-4">
             <div class="col-sm-6">
                 <label class="form-label">Mensajes:</label>
-                <textarea id="mensajes" cols="10" rows="10" class="form-control"></textarea>
+                <div id="mensajes" class="border"></div>
             </div>
             <div class="col-sm-6">
-                <form action="">
-                    <label class="form-label">Texto a enviar</label>
-                    <input class="form-control" type="email" id="email" placeholder="nombre@mail.com">
-                    <input type="text" id="message" name="texto" class="form-control">
-                    <button type="submit" onclick="sendMessage()" class="btn btn-primary mt-2">Enviar</button>
-                </form>
+                <label class="form-label">Texto a enviar</label>
+                <input class="form-control" type="email" id="usuario" placeholder="nombre@mail.com">
+                <input type="text" id="texto" name="texto" class="form-control">
+                <button class="btn btn-primary mt-2" id="enviarMensaje">Enviar</button>
             </div>
         </div>
     </div>

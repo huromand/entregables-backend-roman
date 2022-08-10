@@ -1,65 +1,55 @@
 const socket = io();
 
-const addprod = document.querySelector('#send');
+let btnProducto = document.getElementById('enviarProducto');
+let usuario = document.getElementById('usuario');
+let mensaje = document.getElementById('texto');
+let btnMensaje = document.getElementById('enviarMensaje');
+let output = document.getElementById('mensajes');
 
-addprod.addEventListener('submit',(e)=>{
-    e.preventDefault();
 
-    const title = document.getElementById("title").value;
-    const price = document.getElementById("price").value;
-    const link = document.getElementById("link").value;
+btnMensaje.addEventListener('click', function(){
+    socket.emit('mensajeChat', {
+        usuario: usuario.value,
+        mensaje: mensaje.value
+    })
+})
 
-    const prod = {
-        "title": title,
-        "price": price,
-        "link":link
+socket.on("mensajeChat", (obj) => {
+    console.log(obj);
+    output.innerHTML +=`<div class="d-flex"><p style="color:#405EF7">${obj.usuario}</p><p style="color:#906840">[${obj.dateTime}]: </p><p style="color:#71EB7A">${obj.mensaje}</p></div>`
+})
+
+socket.on("init",(obj)=>{
+    for(let msj of obj.mensajes){
+        output.innerHTML +=`<div class="d-flex"><p style="color:#405EF7">${msj.usuario}</p><p style="color:#906840">[${msj.dateTime}]: </p><p style="color:#71EB7A">${msj.mensaje}</p></div>`
     }
-
-    socket.emit("PRODUCT_ADDED",prod)
-    addprod.reset();
-
 })
 
-function sendMessage(){
-    const email = document.getElementById("email").value
-    const message = document.getElementById("message").value
-
-    socket.emit("POST_MESSAGE",{email,message})
-
-    
-    document.getElementById("mensajes").value=""
-   
-}
-
-
-socket.on("NEW_MESSAGE",(msg)=>{
-    appendMessage(msg);
-})
-
-function appendMessage(msg){
- 
-    const newMessage=`<div class="lineMessage"><p style="color:#405EF7">${msg.email}</p><p style="color:#906840">[${msg.dateTime}]: </p><p style="color:#71EB7A">${msg.message}</p><div>`
-    document.getElementById("messages").innerHTML+=newMessage;
-}
-
-
-socket.on("INIT",(messages)=>{
-
-    for(let msg of messages){
-     
-         appendMessage(msg)
-    }
- 
-})
-
-
-socket.on("PRODUCTS", async (response) => {
+ socket.on("cargarProductos", (productos) => {
+    console.log(productos);
     const url = "http://localhost:8080/tabla.hbs";
-      fetch(url).then((resp) => {
+    fetch(url).then((resp) => {
         return resp.text();
     }).then((text) => {
-      const template = Handlebars.compile(text);
-      const html = template({response});
-      document.querySelector("#items").innerHTML = html;
+        const template = Handlebars.compile(text);
+        const html = template({ productos});
+        document.getElementById("items").innerHTML = html;
     });
-  })
+})
+
+btnProducto.addEventListener('click',(e)=>{
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value;
+    const precio = document.getElementById("precio").value;
+    const imagen = document.getElementById("imagen").value;
+
+    const prod = {
+        "nombre": nombre,
+        "precio": precio,
+        "imagen":imagen
+    }
+
+    socket.emit("productoAgregado",prod)
+    btnProducto.reset();
+})

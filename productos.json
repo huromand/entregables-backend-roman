@@ -23,36 +23,6 @@
       "precio": "49000",
       "imagen": "https://robohash.org/1",
       "id": 1
-    },
-    {
-      "nombre": "ROBOT 5",
-      "precio": "52640",
-      "imagen": "https://robohash.org/5",
-      "id": 5
-    },
-    {
-      "nombre": "ROBOT sad",
-      "precio": "12345",
-      "imagen": "https://robohash.org/59",
-      "id": 6
-    },
-    {
-      "nombre": "ROBOT det",
-      "precio": "47154",
-      "imagen": "https://robohash.org/1",
-      "id": 7
-    },
-    {
-      "nombre": "ROBOT det",
-      "precio": "47154",
-      "imagen": "https://robohash.org/1",
-      "id": 8
-    },
-    {
-      "nombre": "ROBOT det",
-      "precio": "47154",
-      "imagen": "https://robohash.org/1",
-      "id": 9
     }
   ]
 }
