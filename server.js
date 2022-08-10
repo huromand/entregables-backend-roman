@@ -17,7 +17,7 @@ const managerMensajes = new ChatManager("mensajes.json", "utf-8");
 
 const mensajes = [];
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 socketServer.on("connection", (socket)=>{

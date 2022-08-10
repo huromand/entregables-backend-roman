@@ -26,13 +26,13 @@ socket.on("init",(obj)=>{
 })
 
  socket.on("cargarProductos", (productos) => {
-    console.log(productos);
     const url = "http://localhost:8080/tabla.hbs";
     fetch(url).then((resp) => {
         return resp.text();
     }).then((text) => {
         const template = Handlebars.compile(text);
-        const html = template({ productos});
+        const html = template(productos); //aaaaaaaaahjkfhsdkj lpm los corchetes
+        //const html = template({productos}); 
         document.getElementById("items").innerHTML = html;
     });
 })
@@ -51,5 +51,4 @@ btnProducto.addEventListener('click',(e)=>{
     }
 
     socket.emit("productoAgregado",prod)
-    btnProducto.reset();
 })

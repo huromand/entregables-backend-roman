@@ -23,6 +23,12 @@
       "precio": "49000",
       "imagen": "https://robohash.org/1",
       "id": 1
+    },
+    {
+      "nombre": "ROBOT 5",
+      "precio": "123546",
+      "imagen": "https://robohash.org/70",
+      "id": 5
     }
   ]
 }
